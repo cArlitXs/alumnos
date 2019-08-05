@@ -13,16 +13,25 @@ public class Persona implements Comparable<Persona> {
 //	Boolean trabajas = Boolean.FALSE;
 //	String genero = "H";
 
-	String nombre;
-	String apellidos;
-	Integer dia;
-	Integer mes;
-	Integer anyo;
-	String ciudad;
-	Integer edad;
-	Boolean estudias;
-	Boolean trabajas;
-	String genero;
+	private String dni;
+	private String nombre;
+	private String apellidos;
+	private Integer dia;
+	private Integer mes;
+	private Integer anyo;
+	private String ciudad;
+	private Integer edad;
+	private Boolean estudias;
+	private Boolean trabajas;
+	private String genero;
+	
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
 
 	public String getNombre() {
 		return nombre;

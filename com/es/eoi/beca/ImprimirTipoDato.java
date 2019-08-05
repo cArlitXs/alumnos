@@ -8,7 +8,7 @@ public class ImprimirTipoDato {
 
 		Persona dato2 = new Persona();
 		
-		dato2.nombre = "JJ";
+		dato2.setNombre("JJ");
 		
 		Persona[] datos = new Persona[2];
 		datos[0] = dato1;
@@ -33,7 +33,7 @@ public class ImprimirTipoDato {
 	public static void imprimirTodos(Persona[] datos) {
 		
 		for (int i = 0; i < datos.length; i++) {
-			System.out.println(datos[i].nombre);
+			System.out.println(datos[i].getNombre());
 		}
 		
 	}
