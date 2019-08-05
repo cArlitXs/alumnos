@@ -4,13 +4,13 @@ public class ImprimirTipoDato {
 
 	public static void main(String[] args) {
 		
-		TipoDatos dato1 = new TipoDatos();
+		Persona dato1 = new Persona();
 
-		TipoDatos dato2 = new TipoDatos();
+		Persona dato2 = new Persona();
 		
 		dato2.nombre = "JJ";
 		
-		TipoDatos[] datos = new TipoDatos[2];
+		Persona[] datos = new Persona[2];
 		datos[0] = dato1;
 		datos[1] = dato2;
 		
@@ -30,7 +30,7 @@ public class ImprimirTipoDato {
 
 	}
 	
-	public static void imprimirTodos(TipoDatos[] datos) {
+	public static void imprimirTodos(Persona[] datos) {
 		
 		for (int i = 0; i < datos.length; i++) {
 			System.out.println(datos[i].nombre);
