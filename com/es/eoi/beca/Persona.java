@@ -24,7 +24,25 @@ public class Persona implements Comparable<Persona> {
 	private Boolean estudias;
 	private Boolean trabajas;
 	private String genero;
+	private Double nota;
+	private Calificaciones calificaion;
 	
+	public Calificaciones getCalificaion() {
+		return calificaion;
+	}
+
+	public void setCalificaion(Calificaciones calificacionStatus) {
+		this.calificaion = calificacionStatus;
+	}
+
+	public Double getNota() {
+		return nota;
+	}
+
+	public void setNota(Double nota) {
+		this.nota = nota;
+	}
+
 	public String getDni() {
 		return dni;
 	}
@@ -114,28 +132,33 @@ public class Persona implements Comparable<Persona> {
 	}
 
 	@Override
+	
+//	public int compareTo(Persona o) {
+//
+//		int valor = this.getNombre().compareTo(o.getNombre());
+//
+//		if (valor == 0) {
+//			if (this.getEdad().equals(o.getEdad())) {
+//				if (this.getAnyo().equals(o.getAnyo())) {
+//					return 0;
+//				} else if (this.getAnyo() > o.getAnyo()) {
+//					return 1;
+//				} else {
+//					return -1;
+//				}
+//			} else if (this.getEdad() < o.getEdad()) {
+//				return 1;
+//			} else {
+//				return -1;
+//			}
+//		} else {
+//			return valor;
+//		}
+//
+//	}
+	
 	public int compareTo(Persona o) {
-
-		int valor = this.getNombre().compareTo(o.getNombre());
-
-		if (valor == 0) {
-			if (this.getEdad().equals(o.getEdad())) {
-				if (this.getAnyo().equals(o.getAnyo())) {
-					return 0;
-				} else if (this.getAnyo() > o.getAnyo()) {
-					return 1;
-				} else {
-					return -1;
-				}
-			} else if (this.getEdad() < o.getEdad()) {
-				return 1;
-			} else {
-				return -1;
-			}
-		} else {
-			return valor;
-		}
-
+		return 0;
 	}
 
 }

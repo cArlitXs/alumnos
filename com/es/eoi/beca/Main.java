@@ -1,5 +1,6 @@
 package com.es.eoi.beca;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -7,11 +8,12 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.HashMap;
+import com.es.eoi.beca.Calificaciones;
 
 public class Main {
 
 	public static void main(String[] args) {
-		
+
 //		EJERCICIO 1
 
 //		Persona p1 = new Persona();
@@ -55,7 +57,7 @@ public class Main {
 //		}
 
 //		EJERCICIO 2
-		
+
 //		HashMap<String, Persona> personas = new HashMap<String, Persona>();
 //		
 //		personas.put(p1.getDni(), p1);
@@ -70,97 +72,184 @@ public class Main {
 //		for (Persona p : personas.values()) {
 //			System.out.println(p.getDni() + ", " + p.getNombre() + ", " + p.getEdad() + ", " + p.getAnyo());
 //		}
-		
-//		EJERCICIO 3
-		
-		String cadena = "Esto es una prueba";
-		System.out.println(cadena.toUpperCase());
-		System.out.println("------------------------");
-		
-		String cadena2 = "La clase String, tiene varios métodos, muy útiles, como saber su longitud, trocear la cadena, etc";
-		String cadenaArray[] = cadena2.split(", ");
-		
-		for (String p : cadenaArray) {
-			System.out.println(p);
-		}
-		System.out.println("------------------------");
-		
-		String cadena3 = "Esto es un ejemplo usado para determinar un indice";
-		System.out.println(cadena3.indexOf("ejemplo"));
-		System.out.println("------------------------");
-		
-		System.out.println(muestraFecha("11/12/1993"));
-		System.out.println("------------------------");
-		
-		System.out.print("Escriba un texto ");
-        Scanner scanner = new Scanner(System.in);
-        String[] inputString = scanner.nextLine();
 
-        for(int i = 0; i < inputString.length(); i++) {
-        	
-        }
-		
+//		EJERCICIO 3
+
+//		String cadena = "Esto es una prueba";
+//		System.out.println(cadena.toUpperCase());
+//		System.out.println("------------------------");
+//
+//		String cadena2 = "La clase String, tiene varios métodos, muy útiles, como saber su longitud, trocear la cadena, etc";
+//		String cadenaArray[] = cadena2.split(", ");
+//
+//		for (String p : cadenaArray) {
+//			System.out.println(p);
+//		}
+//		System.out.println("------------------------");
+//
+//		String cadena3 = "Esto es un ejemplo usado para determinar un indice";
+//		System.out.println(cadena3.indexOf("ejemplo"));
+//		System.out.println("------------------------");
+//
+//		System.out.println(muestraFecha("11/01/1993"));
+//		System.out.println("------------------------");
+//
+//		String inputString;
+//		do {
+//			System.out.print("Escriba un texto ");
+//			Scanner scanner = new Scanner(System.in);
+//			inputString = scanner.nextLine();
+//			System.out.println(inputString);
+//		} while (inputString.compareTo("exit") != 0);
+
+		String inputString;
+		String nombreAlumno;
+		Calificaciones calificacionStatus = null;
+		Double calificacionAlumno;
+		HashMap<String, Persona> alumnos = new HashMap<String, Persona>();
+
+		do {
+			System.out.println("1. Nueva calificación");
+			System.out.println("2. Listar calificaciones");
+			Scanner scanner = new Scanner(System.in);
+			inputString = scanner.nextLine();
+
+			Persona alumnox = new Persona();
+
+			if (inputString.compareTo("1") == 0 || inputString.compareTo("2") == 0) {
+
+//				System.out.println("Ha seleccionado " + inputString);
+
+				if (inputString.compareTo("1") == 0) {
+
+					System.out.println("Escriba el nombre del alumno:");
+					Scanner alumno = new Scanner(System.in);
+					nombreAlumno = alumno.nextLine();
+
+					alumnox.setNombre(nombreAlumno);
+
+					System.out.println("Ingrese la calificación:");
+					Scanner cal = new Scanner(System.in);
+					calificacionAlumno = Double.parseDouble(cal.nextLine());
+
+					alumnox.setNota(calificacionAlumno);
+
+					getStatus();
+
+					if (calificacionAlumno >= 0 && calificacionAlumno <= 10) {
+						if (calificacionAlumno >= 5) {
+							alumnox.setCalificaion(calificacionStatus.NOTABLE);
+						} else {
+							alumnox.setCalificaion(calificacionStatus.INSUFICIENTE);
+						}
+
+//						System.out.println(alumnox.getNombre() + ", " + alumnox.getNota() + ", " + alumnox.getCalificaion());
+
+						alumnos.put(alumnox.getNombre(), alumnox);
+						System.out.println("Guardado corractamente!");
+
+					} else {
+						System.out.println("Error!");
+					}
+
+				}
+				if (inputString.compareTo("2") == 0) {
+//
+//					System.out.println("1. Ordenar por calificación ascendente");
+//					System.out.println("2. Ordenar por calificación descendente");
+//					System.out.println("3. Mostrar NOTABLES");
+//					System.out.println("4. Mostrar INSUFICIENTES");
+//					
+//					Scanner lista = new Scanner(System.in);
+//					String listaOpcion = lista.nextLine();
+//
+//					List<Persona> alumnosXCalifAsc = new ArrayList<>(alumnos.values());
+//					
+//					Collections.sort(alumnosXCalifAsc);
+
+					
+
+					System.out.println("Lista de alumnos:");
+
+					for (Persona p : alumnos.values()) {
+						System.out.println(p.getNombre() + "\t\t" + p.getNota() + "\t" + p.getCalificaion());
+					}
+
+				}
+
+			} else {
+				System.out.println("Se ha terminado la ejecución");
+			}
+
+			System.out.println("--------------------------------");
+		} while (inputString.compareTo("1") == 0 || inputString.compareTo("2") == 0);
+
 	}
-	
+
+	private static Calificaciones status;
+
+	public static Calificaciones getStatus() {
+		return status;
+	}
+
 	public static String muestraFecha(String args) {
 		Pattern pat = Pattern.compile("[0-9]{2}[/][0-9]{2}[/][0-9]{4}");
 		Matcher mat = pat.matcher(args);
 
-		if(mat.matches()) {
+		if (mat.matches()) {
 			String dia = args.substring(0, 2);
 			String mes = args.substring(3, 5);
 			String anyo = args.substring(6, 10);
-			
+
 			String mesTexto;
-			
-			switch(mes) {
-				case "01":
-					mesTexto = "Enero";
-			    break;
-				case "02":
-					mesTexto = "Febrero";
-			    break;
-				case "03":
-					mesTexto = "Marzo";
-			    break;
-				case "04":
-					mesTexto = "Abril";
-			    break;
-				case "05":
-					mesTexto = "Mayo";
-			    break;
-				case "06":
-					mesTexto = "Junio";
-			    break;
-				case "07":
-					mesTexto = "Julio";
-			    break;
-				case "08":
-					mesTexto = "Agosto";
-			    break;
-				case "09":
-					mesTexto = "Setiembre";
-			    break;
-				case "10":
-					mesTexto = "Octubre";
-			    break;
-				case "11":
-					mesTexto = "Noviembre";
-			    break;
-				case "12":
-					mesTexto = "Diciembre";
-			    break;
-				default:
-					mesTexto = "Error!";
-			    break;
+
+			switch (mes) {
+			case "01":
+				mesTexto = "Enero";
+				break;
+			case "02":
+				mesTexto = "Febrero";
+				break;
+			case "03":
+				mesTexto = "Marzo";
+				break;
+			case "04":
+				mesTexto = "Abril";
+				break;
+			case "05":
+				mesTexto = "Mayo";
+				break;
+			case "06":
+				mesTexto = "Junio";
+				break;
+			case "07":
+				mesTexto = "Julio";
+				break;
+			case "08":
+				mesTexto = "Agosto";
+				break;
+			case "09":
+				mesTexto = "Setiembre";
+				break;
+			case "10":
+				mesTexto = "Octubre";
+				break;
+			case "11":
+				mesTexto = "Noviembre";
+				break;
+			case "12":
+				mesTexto = "Diciembre";
+				break;
+			default:
+				mesTexto = "Error!";
+				break;
 			}
-			
+
 			return "Es el " + dia + " de " + mesTexto + " del " + anyo;
-		}
-		else {
+		} else {
 			return "La fecha '" + args + "' no tiene el formato correcto";
 		}
-		
+
 	}
 
 }
