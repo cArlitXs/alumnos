@@ -106,7 +106,7 @@ public class Main {
 		String nombreAlumno;
 		Calificaciones calificacionStatus = null;
 		Double calificacionAlumno;
-		HashMap<String, Persona> alumnos = new HashMap<String, Persona>();
+		List<Persona> alumnosList = new ArrayList<Persona>();
 
 		do {
 			System.out.println("1. Nueva calificación");
@@ -114,13 +114,11 @@ public class Main {
 			Scanner scanner = new Scanner(System.in);
 			inputString = scanner.nextLine();
 
-			Persona alumnox = new Persona();
-
 			if (inputString.compareTo("1") == 0 || inputString.compareTo("2") == 0) {
 
-//				System.out.println("Ha seleccionado " + inputString);
-
 				if (inputString.compareTo("1") == 0) {
+
+					Persona alumnox = new Persona();
 
 					System.out.println("Escriba el nombre del alumno:");
 					Scanner alumno = new Scanner(System.in);
@@ -143,9 +141,8 @@ public class Main {
 							alumnox.setCalificaion(calificacionStatus.INSUFICIENTE);
 						}
 
-//						System.out.println(alumnox.getNombre() + ", " + alumnox.getNota() + ", " + alumnox.getCalificaion());
+						alumnosList.add(alumnox);
 
-						alumnos.put(alumnox.getNombre(), alumnox);
 						System.out.println("Guardado corractamente!");
 
 					} else {
@@ -154,24 +151,15 @@ public class Main {
 
 				}
 				if (inputString.compareTo("2") == 0) {
-//
+
 //					System.out.println("1. Ordenar por calificación ascendente");
 //					System.out.println("2. Ordenar por calificación descendente");
 //					System.out.println("3. Mostrar NOTABLES");
-//					System.out.println("4. Mostrar INSUFICIENTES");
-//					
-//					Scanner lista = new Scanner(System.in);
-//					String listaOpcion = lista.nextLine();
-//
-//					List<Persona> alumnosXCalifAsc = new ArrayList<>(alumnos.values());
-//					
-//					Collections.sort(alumnosXCalifAsc);
-
-					
+//					System.out.println("4. Mostrar INSUFICIENTES");					
 
 					System.out.println("Lista de alumnos:");
 
-					for (Persona p : alumnos.values()) {
+					for (Persona p : alumnosList) {
 						System.out.println(p.getNombre() + "\t\t" + p.getNota() + "\t" + p.getCalificaion());
 					}
 
