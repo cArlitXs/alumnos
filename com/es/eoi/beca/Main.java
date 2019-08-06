@@ -1,5 +1,9 @@
 package com.es.eoi.beca;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,7 +16,7 @@ import com.es.eoi.beca.Calificaciones;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 //		EJERCICIO 1
 
@@ -102,76 +106,116 @@ public class Main {
 //			System.out.println(inputString);
 //		} while (inputString.compareTo("exit") != 0);
 
+//		EJERCICIO 4
+
+//		String inputString;
+//		String nombreAlumno;
+//		Calificaciones calificacionStatus = null;
+//		Double calificacionAlumno;
+//		List<Persona> alumnosList = new ArrayList<Persona>();
+//
+//		do {
+//			System.out.println("1. Nueva calificación");
+//			System.out.println("2. Listar calificaciones");
+//			Scanner scanner = new Scanner(System.in);
+//			inputString = scanner.nextLine();
+//
+//			if (inputString.compareTo("1") == 0 || inputString.compareTo("2") == 0) {
+//
+//				if (inputString.compareTo("1") == 0) {
+//
+//					Persona alumnox = new Persona();
+//
+//					System.out.println("Escriba el nombre del alumno:");
+//					Scanner alumno = new Scanner(System.in);
+//					nombreAlumno = alumno.nextLine();
+//
+//					alumnox.setNombre(nombreAlumno);
+//
+//					System.out.println("Ingrese la calificación:");
+//					Scanner cal = new Scanner(System.in);
+//					calificacionAlumno = Double.parseDouble(cal.nextLine());
+//
+//					alumnox.setNota(calificacionAlumno);
+//
+//					getStatus();
+//
+//					if (calificacionAlumno >= 0 && calificacionAlumno <= 10) {
+//						if (calificacionAlumno >= 5) {
+//							alumnox.setCalificaion(calificacionStatus.NOTABLE);
+//						} else {
+//							alumnox.setCalificaion(calificacionStatus.INSUFICIENTE);
+//						}
+//
+//						alumnosList.add(alumnox);
+//
+//						System.out.println("Guardado corractamente!");
+//
+//					} else {
+//						System.out.println("Error!");
+//					}
+//
+//				}
+//				if (inputString.compareTo("2") == 0) {					
+//
+//					System.out.println("Lista de alumnos:");
+//
+//					for (Persona p : alumnosList) {
+//						System.out.println(p.getNombre() + "\t\t" + p.getNota() + "\t" + p.getCalificaion());
+//					}
+//
+//				}
+//
+//			} else {
+//				System.out.println("Se ha terminado la ejecución");
+//			}
+//
+//			System.out.println("--------------------------------");
+//		} while (inputString.compareTo("1") == 0 || inputString.compareTo("2") == 0);
+
+//		EJERCICIO 5
+
 		String inputString;
-		String nombreAlumno;
-		Calificaciones calificacionStatus = null;
-		Double calificacionAlumno;
-		List<Persona> alumnosList = new ArrayList<Persona>();
 
 		do {
-			System.out.println("1. Nueva calificación");
-			System.out.println("2. Listar calificaciones");
+			System.out.println("1. Escribir diario");
+			System.out.println("2. Leer diario");
 			Scanner scanner = new Scanner(System.in);
 			inputString = scanner.nextLine();
 
 			if (inputString.compareTo("1") == 0 || inputString.compareTo("2") == 0) {
 
 				if (inputString.compareTo("1") == 0) {
+					
+					System.out.println("Escriba texto:");
+					inputString = scanner.nextLine() + "\n";
 
-					Persona alumnox = new Persona();
+					escribir(inputString, "diario.txt");
 
-					System.out.println("Escriba el nombre del alumno:");
-					Scanner alumno = new Scanner(System.in);
-					nombreAlumno = alumno.nextLine();
-
-					alumnox.setNombre(nombreAlumno);
-
-					System.out.println("Ingrese la calificación:");
-					Scanner cal = new Scanner(System.in);
-					calificacionAlumno = Double.parseDouble(cal.nextLine());
-
-					alumnox.setNota(calificacionAlumno);
-
-					getStatus();
-
-					if (calificacionAlumno >= 0 && calificacionAlumno <= 10) {
-						if (calificacionAlumno >= 5) {
-							alumnox.setCalificaion(calificacionStatus.NOTABLE);
-						} else {
-							alumnox.setCalificaion(calificacionStatus.INSUFICIENTE);
-						}
-
-						alumnosList.add(alumnox);
-
-						System.out.println("Guardado corractamente!");
-
-					} else {
-						System.out.println("Error!");
-					}
-
+				} else {
+					leer("diario.txt");
 				}
-				if (inputString.compareTo("2") == 0) {
-
-//					System.out.println("1. Ordenar por calificación ascendente");
-//					System.out.println("2. Ordenar por calificación descendente");
-//					System.out.println("3. Mostrar NOTABLES");
-//					System.out.println("4. Mostrar INSUFICIENTES");					
-
-					System.out.println("Lista de alumnos:");
-
-					for (Persona p : alumnosList) {
-						System.out.println(p.getNombre() + "\t\t" + p.getNota() + "\t" + p.getCalificaion());
-					}
-
-				}
-
-			} else {
-				System.out.println("Se ha terminado la ejecución");
 			}
 
-			System.out.println("--------------------------------");
-		} while (inputString.compareTo("1") == 0 || inputString.compareTo("2") == 0);
+		} while (inputString.compareTo("FIN") != 0);
 
+	}
+	
+	public static void escribir(String texto, String fileName) throws IOException{
+		FileWriter fw = new FileWriter(fileName, true);
+		fw.write(texto);
+		fw.close();
+	}
+	
+	public static void leer(String fileName) throws IOException{
+		FileReader fr = new FileReader(fileName);
+		BufferedReader br = new BufferedReader(fr);
+		String line = br.readLine(); 
+		while(line != null) {
+			System.out.println(line);
+			line = br.readLine();
+		}
+		br.close();
 	}
 
 	private static Calificaciones status;
