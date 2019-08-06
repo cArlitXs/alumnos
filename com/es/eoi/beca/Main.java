@@ -175,48 +175,48 @@ public class Main {
 
 //		EJERCICIO 5
 
-		String inputString;
-
-		do {
-			System.out.println("1. Escribir diario");
-			System.out.println("2. Leer diario");
-			Scanner scanner = new Scanner(System.in);
-			inputString = scanner.nextLine();
-
-			if (inputString.compareTo("1") == 0 || inputString.compareTo("2") == 0) {
-
-				if (inputString.compareTo("1") == 0) {
-					
-					System.out.println("Escriba texto:");
-					inputString = scanner.nextLine() + "\n";
-
-					escribir(inputString, "diario.txt");
-
-				} else {
-					leer("diario.txt");
-				}
-			}
-
-		} while (inputString.compareTo("FIN") != 0);
+//		String inputString;
+//
+//		do {
+//			System.out.println("1. Escribir diario");
+//			System.out.println("2. Leer diario");
+//			Scanner scanner = new Scanner(System.in);
+//			inputString = scanner.nextLine();
+//
+//			if (inputString.compareTo("1") == 0 || inputString.compareTo("2") == 0) {
+//
+//				if (inputString.compareTo("1") == 0) {
+//					
+//					System.out.println("Escriba texto:");
+//					inputString = scanner.nextLine() + "\n";
+//
+//					escribir(inputString, "diario.txt");
+//
+//				} else {
+//					leer("diario.txt");
+//				}
+//			}
+//
+//		} while (inputString.compareTo("FIN") != 0);
 
 	}
 	
-	public static void escribir(String texto, String fileName) throws IOException{
-		FileWriter fw = new FileWriter(fileName, true);
-		fw.write(texto);
-		fw.close();
-	}
-	
-	public static void leer(String fileName) throws IOException{
-		FileReader fr = new FileReader(fileName);
-		BufferedReader br = new BufferedReader(fr);
-		String line = br.readLine(); 
-		while(line != null) {
-			System.out.println(line);
-			line = br.readLine();
-		}
-		br.close();
-	}
+//	public static void escribir(String texto, String fileName) throws IOException{
+//		FileWriter fw = new FileWriter(fileName, true);
+//		fw.write(texto);
+//		fw.close();
+//	}
+//	
+//	public static void leer(String fileName) throws IOException{
+//		FileReader fr = new FileReader(fileName);
+//		BufferedReader br = new BufferedReader(fr);
+//		String line = br.readLine(); 
+//		while(line != null) {
+//			System.out.println(line);
+//			line = br.readLine();
+//		}
+//		br.close();
+//	}
 
 	private static Calificaciones status;
 
