@@ -1,6 +1,7 @@
 package com.es.eoi.beca;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -34,12 +35,16 @@ public class Diario {
 
 					scanner = new Scanner(System.in);
 					String fileName = scanner.nextLine();
-
+					
 					System.out.println("Escriba texto:");
+					
+//					do {
+						
+						escribir(inputString, fileName);
+//						inputString = scanner.nextLine() + "\n";
+//						
+//					} while (inputString.compareTo(exitValue) != 0);
 
-					inputString = scanner.nextLine() + "\n";
-
-					escribir(inputString, fileName);
 
 				} else {
 					System.out.println("¿Qué fichero desea leer?");
@@ -53,7 +58,7 @@ public class Diario {
 			}
 
 			if (inputString.compareTo(exitValue) == 0) {
-				System.out.println("Good bye!");
+				System.out.println("Adiós");
 			}
 
 		} while (inputString.compareTo(exitValue) != 0);
@@ -69,25 +74,32 @@ public class Diario {
 	}
 
 	public static void leer(String fileName) throws IOException {
-		
-		FileReader fr = new FileReader(fileName);
-		BufferedReader br = new BufferedReader(fr);
-		
-		String line = br.readLine();
-		
-		System.out.println("Esto es lo que contiene el fichero " + fileName + ":");
-		System.out.println("Linea\tTexto");
-		System.out.println(separator);
-
-		int i = 1;
-		while (line != null) {
-			System.out.println(i + "\t" + line);
-			line = br.readLine();
+				
+		try {
 			
-			i++;
+			FileReader fr = new FileReader(fileName);
+			BufferedReader br = new BufferedReader(fr);
+			
+			String line = br.readLine();
+			
+			System.out.println("Esto es lo que contiene el fichero " + fileName + ":");
+			System.out.println("Linea\tTexto");
+			System.out.println(separator);
+			
+			int i = 1;
+			while (line != null) {
+				System.out.println(i + "\t" + line);
+				line = br.readLine();
+				
+				i++;
+			}
+			
+			br.close();
+			
 		}
-		
-		br.close();
+		catch (FileNotFoundException e) {
+			System.err.println(e.getMessage());
+		}
 		
 	}
 
